@@ -12,6 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.json.JSONObject;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 public class Registration {
     private final String username, password, ip;
@@ -20,6 +22,19 @@ public class Registration {
         this.username = username;
         this.password = password;
         this.ip = ip;
+    }
+
+    public String getUsername(){return this.username;}
+    public String getPassword(){return this.password;}
+    public String getIp(){return this.ip;}
+
+    public MultiValueMap<String,String> credentialsToMap(){
+        MultiValueMap<String,String> retVal = new LinkedMultiValueMap<>();
+        retVal.add("username", this.username);
+        retVal.add("password", this.password);
+        retVal.add("ip",this.ip);
+
+        return retVal;
     }
 
     public String[] getGeoLocation(){
@@ -94,9 +109,6 @@ public class Registration {
             status="sucessful";
             message="Account has been created for user "+ username+ " from " + getGeoLocation()[1];
         }
-        JSONObject obj = new JSONObject();
-        obj.append("status", status);
-        obj.append("message", message);
 
         Map<String,String> json = new HashMap<>();
         json.put("status", status);
