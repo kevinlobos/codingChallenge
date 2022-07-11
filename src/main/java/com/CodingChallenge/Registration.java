@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -87,7 +88,7 @@ public class Registration {
     }
 
     public Map<String,String> registerUser(){
-        String status="", message="";
+        String status="", message="", uuid="-";
         // Return JSON Object with status and message
         if(isEmpty()){
             // Return status "failed" with message "All fields must be filled out"
@@ -106,13 +107,16 @@ public class Registration {
         }
         if(message == ""){
             // Return status "success" with message "Account has been created for user ${name} from ${city}"
-            status="sucessful";
+            status="successful";
             message="Account has been created for user "+ username+ " from " + getGeoLocation()[1];
+            uuid = UUID.randomUUID().toString();
+
         }
 
         Map<String,String> json = new HashMap<>();
         json.put("status", status);
         json.put("message",message);
+        json.put("uuid", uuid);
         
         return json;
 

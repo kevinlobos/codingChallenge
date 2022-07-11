@@ -59,7 +59,7 @@ class ControllerTest {
         RequestBuilder request = MockMvcRequestBuilders.post("/register").params(params);
         MvcResult result = mvc.perform(request).andReturn();
         String status = JsonPath.parse(result.getResponse().getContentAsString()).read("$.status");
-        assertEquals("sucessful", status);
+        assertEquals("successful", status);
     }
     @Test
     void test2() throws Exception{
@@ -67,7 +67,7 @@ class ControllerTest {
         RequestBuilder request = MockMvcRequestBuilders.post("/register").params(params);
         MvcResult result = mvc.perform(request).andReturn();
         String status = JsonPath.parse(result.getResponse().getContentAsString()).read("$.status");
-        assertEquals("sucessful", status);
+        assertEquals("successful", status);
         
     }
     @Test
@@ -76,7 +76,7 @@ class ControllerTest {
         RequestBuilder request = MockMvcRequestBuilders.post("/register").params(params);
         MvcResult result = mvc.perform(request).andReturn();
         String status = JsonPath.parse(result.getResponse().getContentAsString()).read("$.status");
-        assertEquals("sucessful", status);
+        assertEquals("successful", status);
 
     }
     @Test
